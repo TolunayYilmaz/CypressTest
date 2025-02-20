@@ -81,7 +81,7 @@ export default function Login() {
           );
           if (user) {
             setForm(initialForm);
-            history.push('/main');
+            history.push('/success');
           } else {
             history.push('/error');
           }
@@ -102,6 +102,7 @@ export default function Login() {
           onChange={handleChange}
           value={form.email}
           onInvalid={errors.email.length < 1}
+          data-cy="emailCy"
         />
         {errors.email.length > 1 && (
           <FormFeedback className="text-danger">{errors.email}</FormFeedback>
@@ -118,6 +119,7 @@ export default function Login() {
           onChange={handleChange}
           value={form.password}
           onInvalid={errors.password.length < 1}
+          data-cy="passwordCy"
         />
         {errors.password.length > 1 && (
           <FormFeedback className="text-danger">{errors.password}</FormFeedback>
@@ -130,13 +132,14 @@ export default function Login() {
           checked={form.terms}
           type="checkbox"
           onChange={handleChange}
+          data-cy="checkboxCy"
         />{' '}
         <Label htmlFor="terms" check>
           I agree to terms of service and privacy policy
         </Label>
       </FormGroup>
       <FormGroup className="text-center p-4">
-        <Button color="primary" disabled={!(isValid && form.terms)}>
+        <Button color="primary" data-cy="buttonCy" disabled={!(isValid && form.terms)}>
           Sign In
         </Button>
       </FormGroup>
